@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Product Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .product {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+      }
+      .product h2 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+      .product p {
+        margin: 0 0 5px;
+        color: #555;
+      }
+      .product span {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Product List</h1>
+    <div id="product-list"></div>
+
+    <script>
+      // Example JSON object
+      const data = {
+        products: [
+          {
+            id: 1,
+            name: "Product A",
+            price: 29.99,
+            description: "A cool product",
+          },
+          {
+            id: 2,
+            name: "Product B",
+            price: 39.99,
+            description: "Another cool product",
+          },
+        ],
+      };
+
+      // Function to dynamically generate HTML content from JSON
+      function renderProducts(products) {
+        const productList = document.getElementById("product-list");
+        productList.innerHTML = ""; // Clear any existing content
+
+        products.forEach((product) => {
+          const productDiv = document.createElement("div");
+          productDiv.className = "product";
+
+          productDiv.innerHTML = `
+                    <h2>${product.name}</h2>
+                    <p>${product.description}</p>
+                    <span>Price: $${product.price}</span>
+                `;
+
+          // Add any additional functionality (e.g., click event)
+          productDiv.addEventListener("click", () => {
+            alert(`You selected ${product.name}`);
+          });
+
+          productList.appendChild(productDiv);
+        });
+      }
+
+      // Execute the function to render products on page load
+      renderProducts(data.products);
+    </script>
+  </body>
+</html>
